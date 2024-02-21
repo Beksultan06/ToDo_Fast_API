@@ -5,7 +5,11 @@ from todo.database.base import get_db
 from todo.models import ToDo
 from todo.config import settings
 
-router = APIRouter()
+router = APIRouter(
+    prefix='/todo',  # Добавляем запятую после этой строки
+    tags=['ToDo']    # Добавляем квадратные скобки для списка тегов
+)
+
 templates = Jinja2Templates(directory="templates")
 
 @router.get('/')
@@ -16,3 +20,5 @@ def home(request: Request, db_session: Session = Depends(get_db)):
                                        'app_name': settings.app_name,
                                        'todo_list': todos}
                                        )
+
+
