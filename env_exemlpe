@@ -1,2 +1,2 @@
 # NAME_APP='ToDo FastAPI - Твой менеджер задач'
-# SQLALCHEMY_DATABASE_URL=sqlite:///.\\todo\\database\\DB\\todo.db
+# SQLALCHEMY_DATABASE_URL=место там где должно находиться ваша база данных 
