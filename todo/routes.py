@@ -12,21 +12,15 @@ from starlette.responses import RedirectResponse
 from starlette.status import HTTP_303_SEE_OTHER, HTTP_302_FOUND
 
 router = APIRouter(
-    prefix='/todo',  # Добавляем запятую после этой строки
-    tags=['ToDo']    # Добавляем квадратные скобки для списка тегов
+    tags=['ToDo - List']    # Добавляем квадратные скобки для списка тегов
 )
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="todo/templates")
 
 @router.get('/')
 def home(request: Request, db_session: Session = Depends(get_db)):
     todos = db_session.query(ToDo).all()
-    return templates.TemplateResponse('templates/todo/index.html',
-                                      {'request': request,
-                                       'app_name': settings.app_name,
-                                       'todo_list': todos}
-                                       )
-
+    return templates.TemplateResponse('index.html',{'request': request,'app_name': settings.app_name,'todo_list': todos})
 
 @router.post('/add/')
 #три точки это означает что это строка
